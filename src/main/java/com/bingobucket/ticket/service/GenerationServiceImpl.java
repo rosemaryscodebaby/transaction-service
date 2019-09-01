@@ -1,4 +1,13 @@
-package com.bingobucket.ticket.service.impl;
+package com.bingobucket.ticket.service;
+
+import com.bingobucket.ticket.model.Transaction;
+import com.bingobucket.ticket.util.ServiceUtil;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 import static com.bingobucket.ticket.configuration.Constants.BLANKS_PER_COLUMN;
 import static com.bingobucket.ticket.configuration.Constants.BLANKS_PER_ROW;
@@ -7,21 +16,12 @@ import static com.bingobucket.ticket.configuration.Constants.NUMBERS_PER_COLUMN;
 import static com.bingobucket.ticket.configuration.Constants.ROW_LENGTH_OF_EACH_TICKET;
 import static com.bingobucket.ticket.configuration.Constants.TOTAL_NUMBER_OF_TICKETS;
 
-import com.bingobucket.ticket.model.BingoStrip;
-import com.bingobucket.ticket.service.GenerationService;
-import com.bingobucket.ticket.util.ServiceUtil;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-
+@Service
 public class GenerationServiceImpl implements GenerationService {
 
     @Override
-    public BingoStrip assignEmptySpaceToRow(BingoStrip bingoStrip) {
-        BingoStrip result = bingoStrip;
+    public Transaction assignEmptySpaceToRow(Transaction transaction) {
+        Transaction result = transaction;
         for(int i=0; i<TOTAL_NUMBER_OF_TICKETS; i++) {
             result = doAssignEmptySpaceToRow(i, result);
         }
@@ -29,11 +29,11 @@ public class GenerationServiceImpl implements GenerationService {
     }
 
     @Override
-    public BingoStrip translateColumn(BingoStrip bingoStrip) {
-        BingoStrip result = bingoStrip;
+    public Transaction translateColumn(Transaction transaction) {
+        Transaction result = transaction;
         // Perform swaps on all columns except the last one
         for(int colNum = 0; colNum < ROW_LENGTH_OF_EACH_TICKET - 1; colNum++) {
-            result = performSwap(bingoStrip, colNum, true);
+            result = performSwap(transaction, colNum, true);
         }
         // Perform swap on last column but in opposite direction and return result
         return performSwap(result, ROW_LENGTH_OF_EACH_TICKET - 2, false);
@@ -46,7 +46,7 @@ public class GenerationServiceImpl implements GenerationService {
         return ServiceUtil.assignValueToEmptyCell(low, high, column);
     }
 
-    private BingoStrip performSwap(BingoStrip result, int colNum, boolean isForwardSwap) {
+    private Transaction performSwap(Transaction result, int colNum, boolean isForwardSwap) {
         long emptyCount = result.getData().get(colNum).stream().filter(v -> v == -1).count();
         if (emptyCount > BLANKS_PER_COLUMN) {
             long diff = Math.abs(BLANKS_PER_COLUMN - emptyCount);
@@ -58,12 +58,12 @@ public class GenerationServiceImpl implements GenerationService {
         return result;
     }
 
-    private BingoStrip doAssignEmptySpaceToRow(int i, BingoStrip bingoStrip) {
-        BingoStrip result;
+    private Transaction doAssignEmptySpaceToRow(int i, Transaction transaction) {
+        Transaction result;
         int index = i * COLUMN_LENGTH_OF_EACH_TICKET;
 
         Integer[] firstBlankRow = ServiceUtil.getRandomNumberArr(BLANKS_PER_ROW, ROW_LENGTH_OF_EACH_TICKET);
-        result = ServiceUtil.doAssignEmptySpaceToRow(bingoStrip, index, firstBlankRow);
+        result = ServiceUtil.doAssignEmptySpaceToRow(transaction, index, firstBlankRow);
 
         Integer[] secondBlankRow = ServiceUtil.getRandomNumberArr(BLANKS_PER_ROW, ROW_LENGTH_OF_EACH_TICKET);
         result = ServiceUtil.doAssignEmptySpaceToRow(result, index + 1, secondBlankRow);

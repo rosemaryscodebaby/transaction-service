@@ -10,10 +10,10 @@ import java.util.Map;
 import static com.bingobucket.ticket.configuration.Constants.COLUMN_INDEXES;
 import static com.bingobucket.ticket.configuration.Constants.COMBINED_COLUMN_LENGTH;
 
-public class BingoStrip {
+public class Transaction {
     private Map<Integer, List<Integer>> data = new HashMap<>();
 
-    public BingoStrip() {
+    public Transaction() {
         Arrays.stream(COLUMN_INDEXES).forEach(x -> data.put(Integer.valueOf(x), new ArrayList<>(Collections.nCopies(COMBINED_COLUMN_LENGTH, 0))));
     }
 

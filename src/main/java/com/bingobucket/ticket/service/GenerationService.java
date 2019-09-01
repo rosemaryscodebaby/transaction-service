@@ -1,14 +1,14 @@
 package com.bingobucket.ticket.service;
 
-import com.bingobucket.ticket.model.BingoStrip;
+import com.bingobucket.ticket.model.Transaction;
 
 import java.util.List;
 
 public interface GenerationService {
 
-    BingoStrip assignEmptySpaceToRow(BingoStrip data);
+    Transaction assignEmptySpaceToRow(Transaction data);
 
-    BingoStrip translateColumn(BingoStrip data);
+    Transaction translateColumn(Transaction data);
 
     List<Integer> assignNumberToColumn(List<Integer> column, int index);
 }

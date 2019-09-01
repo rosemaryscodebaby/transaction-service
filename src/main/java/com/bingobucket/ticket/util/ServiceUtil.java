@@ -1,6 +1,6 @@
 package com.bingobucket.ticket.util;
 
-import com.bingobucket.ticket.model.BingoStrip;
+import com.bingobucket.ticket.model.Transaction;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,10 +36,10 @@ public class ServiceUtil {
     }
 
 
-    public static Map<Integer, List<Integer>> shiftBlanks(BingoStrip bingoStrip, int colNum, long excess, int swapVal) {
-        //TODO future randomness enhancement: could perform swaps randonmy rather than from top-down
-        List<Integer> nextCol = bingoStrip.getData().get(colNum + 1);
-        List<Integer> thisCol = bingoStrip.getData().get(colNum);
+    public static Map<Integer, List<Integer>> shiftBlanks(Transaction transaction, int colNum, long excess, int swapVal) {
+        // perform swaps on each row from top-down
+        List<Integer> nextCol = transaction.getData().get(colNum + 1);
+        List<Integer> thisCol = transaction.getData().get(colNum);
 
         for(int i = 0; i < COMBINED_COLUMN_LENGTH; i++) {
             if(swapVal == 0){
@@ -50,15 +50,15 @@ public class ServiceUtil {
                 excess = ServiceUtil.performSwap(i, nextCol, thisCol, excess, swapVal);
             }
         }
-        bingoStrip.setColumn(colNum, thisCol);
-        bingoStrip.setColumn(colNum + 1, nextCol);
-        return bingoStrip.getData();
+        transaction.setColumn(colNum, thisCol);
+        transaction.setColumn(colNum + 1, nextCol);
+        return transaction.getData();
     }
 
 
-    public static BingoStrip doAssignEmptySpaceToRow(BingoStrip bingoStrip, int rowNum, Integer... indxArr) {
-        Arrays.stream(indxArr).forEach(i -> bingoStrip.assignEmptyArrByRow(i, rowNum));
-        return bingoStrip;
+    public static Transaction doAssignEmptySpaceToRow(Transaction transaction, int rowNum, Integer... indxArr) {
+        Arrays.stream(indxArr).forEach(i -> transaction.assignEmptyArrByRow(i, rowNum));
+        return transaction;
     }
 
     private static long performSwap(int i, List<Integer> thisCol, List<Integer> nextCol, long excess, int swapVal) {

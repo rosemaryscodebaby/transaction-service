@@ -1,19 +1,22 @@
 package com.bingobucket.ticket.controller;
 
-import com.bingobucket.ticket.model.BingoStrip;
+import com.bingobucket.ticket.model.Transaction;
 import com.bingobucket.ticket.service.DisplayService;
 import com.bingobucket.ticket.service.GenerationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Optional;
 
-import static com.bingobucket.ticket.configuration.Constants.COMBINED_COLUMN_LENGTH;
 import static com.bingobucket.ticket.configuration.Constants.ROW_LENGTH_OF_EACH_TICKET;
 
 public class MyTicketController {
 
+    //@Autowired
     private GenerationService generationService;
 
+    //@Autowired
     private DisplayService displayService;
 
     public MyTicketController(GenerationService generationService, DisplayService ticketDisplayService) {
@@ -21,20 +24,40 @@ public class MyTicketController {
         this.displayService = ticketDisplayService;
     }
 
-    public BingoStrip generateMyTickets() {
-        BingoStrip bingoStrip = new BingoStrip();
+    public Transaction generateMyTickets() {
+        System.out.println(">> generateMyTickets");
+        //Step A.0 initialize to all 0s
+        Transaction transaction = new Transaction();
 
-        bingoStrip = generationService.translateColumn(generationService.assignEmptySpaceToRow(bingoStrip));
+        //Step A.1 assign empty spaces
+        transaction = generationService.translateColumn(generationService.assignEmptySpaceToRow(transaction));
 
+        //Step A.2 assign numbers
         for(int c = 0; c < ROW_LENGTH_OF_EACH_TICKET; c++) {
-            List<Integer> val = generationService.assignNumberToColumn(bingoStrip.getData().get(c), c);
-            bingoStrip.setColumn(c, val);
+            List<Integer> val = generationService.assignNumberToColumn(transaction.getData().get(c), c);
+            transaction.setColumn(c, val);
         }
-        return bingoStrip;
+        System.out.println("<< generateMyTickets");
+        return transaction;
     }
 
-    public void printMyTickets(BingoStrip bingoStrip) {
-        IntStream.range(0, COMBINED_COLUMN_LENGTH).forEach(x -> displayService.print(bingoStrip.getData(), x));
+    public Optional<Transaction> generateFromEmptyTransaction(Transaction transaction) {
+        System.out.println(">> generateFromEmptyTransaction");
+
+        //Step A.1 assign empty spaces
+        transaction = generationService.translateColumn(generationService.assignEmptySpaceToRow(transaction));
+
+        //Step A.2 assign numbers
+        for(int c = 0; c < ROW_LENGTH_OF_EACH_TICKET; c++) {
+            List<Integer> val = generationService.assignNumberToColumn(transaction.getData().get(c), c);
+            transaction.setColumn(c, val);
+        }
+        System.out.println("<< generateFromEmptyTransaction");
+        return Optional.of(transaction);
+    }
+
+    public void printMyTickets(Transaction transaction) {
+        displayService.print(transaction);
     }
 
 }
