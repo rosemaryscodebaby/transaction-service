@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static com.bingobucket.ticket.configuration.Constants.COLUMN_INDEXES;
 import static com.bingobucket.ticket.configuration.Constants.COMBINED_COLUMN_LENGTH;
@@ -13,8 +14,14 @@ import static com.bingobucket.ticket.configuration.Constants.COMBINED_COLUMN_LEN
 public class Transaction {
     private Map<Integer, List<Integer>> data = new HashMap<>();
 
+    private String errMsg;
+
     public Transaction() {
         Arrays.stream(COLUMN_INDEXES).forEach(x -> data.put(Integer.valueOf(x), new ArrayList<>(Collections.nCopies(COMBINED_COLUMN_LENGTH, 0))));
+    }
+
+    public Transaction(String errMsg) {
+        this.errMsg = errMsg;
     }
 
     public Map<Integer, List<Integer>> getData() {
@@ -31,6 +38,10 @@ public class Transaction {
 
     public void assignEmptyArrByRow(int colNum, int rowNum) {
         data.get(colNum).set(rowNum, -1);
+    }
+
+    public Optional<String> getErrorMsg() {
+        return Optional.ofNullable(errMsg);
     }
 
 }

@@ -1,14 +1,11 @@
 package com.bingobucket.ticket.runner;
 
-import com.bingobucket.ticket.Application;
 import com.bingobucket.ticket.controller.MyTicketController;
 import com.bingobucket.ticket.model.Transaction;
 import com.bingobucket.ticket.service.ValidationService;
-import com.bingobucket.ticket.service.DisplayServiceImpl;
-import com.bingobucket.ticket.service.GenerationServiceImpl;
-import com.bingobucket.ticket.service.ValidationServiceImpl;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.bingobucket.ticket.service.impl.DisplayServiceImpl;
+import com.bingobucket.ticket.service.impl.GenerationServiceImpl;
+import com.bingobucket.ticket.service.impl.ValidationServiceImpl;
 
 //@SpringBootApplication
 public class TicketGenerationRunner {

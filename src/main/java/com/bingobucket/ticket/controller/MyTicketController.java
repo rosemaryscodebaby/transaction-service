@@ -42,8 +42,6 @@ public class MyTicketController {
     }
 
     public Optional<Transaction> generateFromEmptyTransaction(Transaction transaction) {
-        System.out.println(">> generateFromEmptyTransaction");
-
         //Step A.1 assign empty spaces
         transaction = generationService.translateColumn(generationService.assignEmptySpaceToRow(transaction));
 
@@ -52,7 +50,6 @@ public class MyTicketController {
             List<Integer> val = generationService.assignNumberToColumn(transaction.getData().get(c), c);
             transaction.setColumn(c, val);
         }
-        System.out.println("<< generateFromEmptyTransaction");
         return Optional.of(transaction);
     }
 

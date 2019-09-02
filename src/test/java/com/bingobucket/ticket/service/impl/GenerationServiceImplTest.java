@@ -2,7 +2,6 @@ package com.bingobucket.ticket.service.impl;
 
 import com.bingobucket.ticket.model.Transaction;
 import com.bingobucket.ticket.service.GenerationService;
-import com.bingobucket.ticket.service.GenerationServiceImpl;
 import com.bingobucket.ticket.service.TestDataProvider;
 import org.junit.jupiter.api.Test;
 

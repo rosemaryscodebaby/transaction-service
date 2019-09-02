@@ -1,6 +1,7 @@
-package com.bingobucket.ticket.service;
+package com.bingobucket.ticket.service.impl;
 
 import com.bingobucket.ticket.model.Transaction;
+import com.bingobucket.ticket.service.GenerationService;
 import com.bingobucket.ticket.util.ServiceUtil;
 import org.springframework.stereotype.Service;
 

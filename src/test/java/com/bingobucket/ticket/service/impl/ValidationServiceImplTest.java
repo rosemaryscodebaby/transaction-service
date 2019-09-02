@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import com.bingobucket.ticket.model.Transaction;
 import com.bingobucket.ticket.service.TestDataProvider;
 import com.bingobucket.ticket.service.ValidationService;
-import com.bingobucket.ticket.service.ValidationServiceImpl;
 import org.junit.Test;
 
 public class ValidationServiceImplTest extends TestDataProvider {

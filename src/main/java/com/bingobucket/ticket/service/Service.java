@@ -16,20 +16,4 @@ public interface Service {
      * @return
      */
     CompletionStage<Optional<String>> processTransaction(Transaction tx);
-
-    //TODO dbg
-    CompletableFuture<Void> processCompletableFuture(Transaction tx);
-
-    //TODO dbg
-    CompletableFuture<Optional<String>> processStringFuture(Transaction tx);
-
-    //TODO dbg
-    CompletionStage<Optional<String>> processCompletionStage(Transaction tx);
-
-    //TODO dbg
-    CompletionStage<Optional<String>> processCompletionStage2(Transaction tx);
-
-    //TODO dbg
-    CompletionStage<Optional<String>> processCompletionStage3(Transaction tx);
-
 }

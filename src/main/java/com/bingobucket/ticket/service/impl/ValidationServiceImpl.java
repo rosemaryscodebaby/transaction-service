@@ -1,6 +1,7 @@
-package com.bingobucket.ticket.service;
+package com.bingobucket.ticket.service.impl;
 
 import com.bingobucket.ticket.model.Transaction;
+import com.bingobucket.ticket.service.ValidationService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,14 +39,14 @@ public class ValidationServiceImpl implements ValidationService {
         // Validate correct number of blanks
         for(Integer index : transaction.get().getData().keySet()) {
             if (!hasBingoStripWithCorrectNumberOfBlanksPerColumn(transaction.get().getData().get(index))) {
-                return Optional.empty();
+                return Optional.of(new Transaction("ValidationError: incorrect number of blanks on column index: " + index));
             }
         }
 
         // Validate no ticket with column of all blanks
         for(Integer index : transaction.get().getData().keySet()) {
             if (!hasAtLeastOneNumberPerTicketColumn(transaction.get().getData().get(index))) {
-                return Optional.empty();
+                return Optional.of(new Transaction("ValidationError: did not have atleast one number on column index: " + index));
             }
         }
         return transaction;
