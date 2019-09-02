@@ -1,0 +1,17 @@
+<html>
+<body>
+<script>
+    window.addEventListener('load', function(e){
+        var ws = new WebSocket('ws://localhost:8080/index/bingo90')
+        ws.addEventListener('open', function(){
+           var playerName = window.prompt('Please enter your name for this session [NB other players will be able to see this]')
+           ws.send(playerName);
+        });
+        ws.addEventListener('message', function(msg){
+           console.log('**Bingo90** ' + msg.data)
+           document.write('**Bingo90** ' + msg.data + '<br>')
+        });
+    })
+</script>
+</body>
+</html>
