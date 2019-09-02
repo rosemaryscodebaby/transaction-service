@@ -29,7 +29,6 @@ public class DisplayServiceImpl implements DisplayService {
      */
     @Override
     public Optional<String> getFormattedTransaction(Optional<Transaction> transaction) {
-        //TODO unwrap optional if not empty, else return optional of error message
         if(transaction.isPresent()) {
             Optional<String> errMsg = transaction.get().getErrorMsg();
             if(!errMsg.isPresent()) {

@@ -38,7 +38,7 @@ public class ITGenerateSingleValidTicket {
             isValid = ticketValidatorService.validate(transaction.get());
         } while(!isValid);
 
-        System.out.println("Printing tickets on attempt#" + attemptCount);// DBG
+        System.out.println("Printing tickets on attempt#" + attemptCount);
 
         System.out.println("====================== Your Pack of 6 Tickets ======================");
 

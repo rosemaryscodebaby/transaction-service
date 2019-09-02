@@ -18,8 +18,6 @@ import java.util.concurrent.CompletionStage;
 @AllArgsConstructor
 public class ServiceImpl implements Service {
 
-    //private GenerationService generationService;
-
     @Autowired
     private DisplayService displayService;
 
@@ -28,14 +26,6 @@ public class ServiceImpl implements Service {
 
     @Autowired
     private TicketFacade controller;
-
-//    @Autowired
-//    public ServiceImpl(GenerationService generationService, DisplayService displayService, ValidationService validationService) {
-//        this.generationService = generationService;
-//        this.displayService = displayService;
-//        this.validatorService = validationService;
-//        this.controller = new TicketFacade(generationService, displayService);
-//    }
 
     @Override
     public CompletionStage<Optional<String>> processTransaction(Transaction tx) {
