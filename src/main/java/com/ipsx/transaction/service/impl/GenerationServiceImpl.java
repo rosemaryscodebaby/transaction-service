@@ -1,5 +1,12 @@
 package com.ipsx.transaction.service.impl;
 
+import static com.ipsx.transaction.configuration.Constants.BLANKS_PER_COLUMN;
+import static com.ipsx.transaction.configuration.Constants.BLANKS_PER_ROW;
+import static com.ipsx.transaction.configuration.Constants.COLUMN_LENGTH_OF_EACH_TICKET;
+import static com.ipsx.transaction.configuration.Constants.NUMBERS_PER_COLUMN;
+import static com.ipsx.transaction.configuration.Constants.ROW_LENGTH_OF_EACH_TICKET;
+import static com.ipsx.transaction.configuration.Constants.TOTAL_NUMBER_OF_TICKETS;
+
 import com.ipsx.transaction.model.Transaction;
 import com.ipsx.transaction.service.GenerationService;
 import com.ipsx.transaction.util.ServiceUtil;
@@ -9,13 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
-import static com.ipsx.transaction.configuration.Constants.BLANKS_PER_COLUMN;
-import static com.ipsx.transaction.configuration.Constants.BLANKS_PER_ROW;
-import static com.ipsx.transaction.configuration.Constants.COLUMN_LENGTH_OF_EACH_TICKET;
-import static com.ipsx.transaction.configuration.Constants.NUMBERS_PER_COLUMN;
-import static com.ipsx.transaction.configuration.Constants.ROW_LENGTH_OF_EACH_TICKET;
-import static com.ipsx.transaction.configuration.Constants.TOTAL_NUMBER_OF_TICKETS;
 
 @Service
 public class GenerationServiceImpl implements GenerationService {

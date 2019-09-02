@@ -1,5 +1,8 @@
 package com.ipsx.transaction.model;
 
+import static com.ipsx.transaction.configuration.Constants.COLUMN_INDEXES;
+import static com.ipsx.transaction.configuration.Constants.COMBINED_COLUMN_LENGTH;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -7,9 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
-import static com.ipsx.transaction.configuration.Constants.COLUMN_INDEXES;
-import static com.ipsx.transaction.configuration.Constants.COMBINED_COLUMN_LENGTH;
 
 public class Transaction {
     private Map<Integer, List<Integer>> data = new HashMap<>();
