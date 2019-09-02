@@ -1,6 +1,7 @@
 package com.bingobucket.ticket.service;
 
 import com.bingobucket.ticket.model.Transaction;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +10,7 @@ import static com.bingobucket.ticket.configuration.Constants.BLANKS_PER_COLUMN;
 import static com.bingobucket.ticket.configuration.Constants.COLUMN_LENGTH_OF_EACH_TICKET;
 import static com.bingobucket.ticket.configuration.Constants.TOTAL_NUMBER_OF_TICKETS;
 
+@Service
 public class ValidationServiceImpl implements ValidationService {
 
     @Override

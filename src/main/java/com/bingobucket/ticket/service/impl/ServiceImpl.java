@@ -5,6 +5,7 @@ import com.bingobucket.ticket.model.Transaction;
 import com.bingobucket.ticket.service.Service;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -37,7 +38,7 @@ import java.util.concurrent.CompletionStage;
 
         System.out.println("========================== End of Tickets ==========================");
  */
-@org.springframework.stereotype.Service
+@Component
 @AllArgsConstructor
 public class ServiceImpl implements Service {
 
@@ -70,7 +71,6 @@ public class ServiceImpl implements Service {
         return CompletableFuture.supplyAsync(
                 () -> controller.generateFromEmptyTransaction(tx))
                 .thenApply(transaction -> validatorService.validateAndReturnTransaction(transaction))
-                //TODO validation of ticket
                 .thenApply(transaction -> displayService.getFormattedTransaction(transaction))
                 ;
     }

@@ -24,7 +24,7 @@ public class DisplayServiceImpl implements DisplayService {
         System.out.println(">> getFormattedTransaction");
         //TODO unwrap optional if not empty, else return optional of error message
         System.out.println("<< getFormattedTransaction");
-        return Optional.of("Transaction");
+        return Optional.of("Transaction");//TODO return transaction as string
     }
 
     public void doPrint(Map<Integer, List<Integer>> data, int index) {
