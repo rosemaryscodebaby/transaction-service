@@ -7,9 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.ipsx.transaction.configuration.Constants.COLUMN_INDEXES;
 import static com.ipsx.transaction.configuration.Constants.COMBINED_COLUMN_LENGTH;
-import static org.junit.Assert.*;
-
-import java.util.List;
+import static org.junit.Assert.assertEquals;
 
 public class GenerationServiceImplTest extends TestDataProvider {
 
@@ -22,27 +20,6 @@ public class GenerationServiceImplTest extends TestDataProvider {
 
         assertEquals(bingoStrip.getData().size(), COLUMN_INDEXES.length);
         assertEquals(bingoStrip.getData().get(0).size(), COMBINED_COLUMN_LENGTH);
-    }
-
-    //!@Test
-    public void testTranslateColumn() {
-        Transaction bingoStrip = new Transaction();
-        bingoStrip.setData(buildTicketStrip());
-
-        sut.translateColumn(bingoStrip);
-        assertEquals(bingoStrip.getData().size(), COLUMN_INDEXES.length);
-        assertEquals(bingoStrip.getData().get(0).size(), COMBINED_COLUMN_LENGTH);
-    }
-
-    //!@Test
-    public void testAssignNumberToColumnAlreadyCorrect() {
-        Transaction bingoStrip = new Transaction();
-        bingoStrip.setData(buildTicketStrip());
-
-        List<Integer> expect = super.list2;
-        List<Integer> actual = sut.assignNumberToColumn(expect, 2);
-
-        assertArrayEquals(expect.toArray(), actual.toArray());
     }
 
 }
